@@ -4,17 +4,11 @@
   <table>
     <tr>
       <th>Category name</th>
-      <th></th>
-      <th></th>
-      <th></th>
     </tr>
 
     <% @categories.each do |category| %>
       <tr>
         <td><%= link_to category.name, categories_path(:parent_id => category.id) %></td>
-        <td><%= link_to 'Show', category %></td>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </table>
@@ -37,5 +31,3 @@
 <br />
 
 <%= link_to 'Back', categories_path(:parent_id => Category.find(params[:parent_id]).parent) unless @products == nil %><br />
-
-<%= link_to 'New Category', new_category_path %>
