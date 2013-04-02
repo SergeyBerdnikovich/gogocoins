@@ -4,10 +4,6 @@
   <table>
     <tr>
       <th>Category name</th>
-      <th>Image</th>
-      <th>Parser</th>
-      <th>Parent</th>
-      <th>Exported</th>
       <th></th>
       <th></th>
       <th></th>
@@ -16,10 +12,6 @@
     <% @categories.each do |category| %>
       <tr>
         <td><%= link_to category.name, categories_path(:parent_id => category.id) %></td>
-        <td><%= category.image %></td>
-        <td><%= category.parser_id %></td>
-        <td><%= category.parent %></td>
-        <td><%= category.exported %></td>
         <td><%= link_to 'Show', category %></td>
         <td><%= link_to 'Edit', edit_category_path(category) %></td>
         <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
