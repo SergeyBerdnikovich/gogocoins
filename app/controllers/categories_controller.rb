@@ -2,13 +2,9 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    if params[:parent_id] == '0' || params[:parent_id].blank?
-      @categories = Category.includes(:products).where(:parent => 0, :exported => true)
-      @products = nil
-    else
-      @categories = Category.includes(:products).where(:parent => params[:parent_id], :exported => true)
-      @products = Category.find(params[:parent_id]).products.where(:exported => true)
-    end
+    params[:parent_id] = '1' if params[:parent_id] == '0' || params[:parent_id].blank?
+    @categories = Category.includes(:products).where(:parent => params[:parent_id], :exported => true)
+    @products = Category.includes(:products).find(params[:parent_id]).products.where(:exported => true)
 
     respond_to do |format|
       format.html # index.html.erb

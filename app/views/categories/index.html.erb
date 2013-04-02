@@ -18,16 +18,18 @@
     <tr>
       <th>Product name</th>
       <th>Description</th>
+      <th>Price</th>
     </tr>
 
     <% @products.each do |product| %>
       <tr>
         <td>--<%= link_to product.title, product %></td>
         <td><%== product.des[0..255] + '...' %></td>
+        <td><%= product.price %></td>
       </tr>
     <% end %>
   </table>
 <% end %>
 <br />
 
-<%= link_to 'Back', categories_path(:parent_id => Category.find(params[:parent_id]).parent) unless @products == nil %><br />
+<%= link_to 'Back', categories_path(:parent_id => Category.find(params[:parent_id]).parent) %><br />
