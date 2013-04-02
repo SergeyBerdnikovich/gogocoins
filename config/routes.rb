@@ -1,8 +1,8 @@
 Gogocoins::Application.routes.draw do
-  resources :products
+  resources :products, :only => [:index, :show]
 
 
-  resources :categories
+  resources :categories, :only => [:index]
 
 
   # The priority is based upon order of creation:
