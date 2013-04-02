@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @category.name %>
+</p>
+
+<p>
+  <b>Image:</b>
+  <%= @category.image %>
+</p>
+
+<p>
+  <b>Parser:</b>
+  <%= @category.parser_id %>
+</p>
+
+<p>
+  <b>Parent:</b>
+  <%= @category.parent %>
+</p>
+
+<p>
+  <b>Exported:</b>
+  <%= @category.exported %>
+</p>
+
+
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>
