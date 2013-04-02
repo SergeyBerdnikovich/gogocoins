@@ -2,7 +2,13 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
+    if params[:parent_id] == '0' || params[:parent_id].blank?
+      @categories = Category.includes(:products).where(:parent => 0, :exported => true)
+      @products = nil
+    else
+      @categories = Category.includes(:products).where(:parent => params[:parent_id], :exported => true)
+      @products = Category.find(params[:parent_id]).products.where(:exported => true)
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,6 +47,7 @@ class CategoriesController < ApplicationController
   # POST /categories.json
   def create
     @category = Category.new(params[:category])
+    @category.parent = 0 if params[:category][:parent].blank?
 
     respond_to do |format|
       if @category.save
@@ -57,6 +64,7 @@ class CategoriesController < ApplicationController
   # PUT /categories/1.json
   def update
     @category = Category.find(params[:id])
+    @category.parent = 0 if params[:category][:parent].blank?
 
     respond_to do |format|
       if @category.update_attributes(params[:category])

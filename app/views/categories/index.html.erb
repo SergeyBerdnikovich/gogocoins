@@ -1,31 +1,49 @@
 <h1>Listing categories</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Image</th>
-    <th>Parser</th>
-    <th>Parent</th>
-    <th>Exported</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<% if @categories.present? %>
+  <table>
+    <tr>
+      <th>Category name</th>
+      <th>Image</th>
+      <th>Parser</th>
+      <th>Parent</th>
+      <th>Exported</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
 
-<% @categories.each do |category| %>
-  <tr>
-    <td><%= category.name %></td>
-    <td><%= category.image %></td>
-    <td><%= category.parser_id %></td>
-    <td><%= category.parent %></td>
-    <td><%= category.exported %></td>
-    <td><%= link_to 'Show', category %></td>
-    <td><%= link_to 'Edit', edit_category_path(category) %></td>
-    <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= link_to category.name, categories_path(:parent_id => category.id) %></td>
+        <td><%= category.image %></td>
+        <td><%= category.parser_id %></td>
+        <td><%= category.parent %></td>
+        <td><%= category.exported %></td>
+        <td><%= link_to 'Show', category %></td>
+        <td><%= link_to 'Edit', edit_category_path(category) %></td>
+        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </table>
 <% end %>
-</table>
+<% if @products.present? %>
+  <table>
+    <tr>
+      <th>Product name</th>
+      <th>Description</th>
+    </tr>
 
+    <% @products.each do |product| %>
+      <tr>
+        <td>--<%= link_to product.title, product %></td>
+        <td><%= product.des[0..255] + '...' %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
 <br />
+
+<%= link_to 'Back', categories_path(:parent_id => Category.find(params[:parent_id]).parent) unless @products == nil %><br />
 
 <%= link_to 'New Category', new_category_path %>
