@@ -23,7 +23,7 @@
     <% @products.each do |product| %>
       <tr>
         <td>--<%= link_to product.title, product %></td>
-        <td><%= product.des[0..255] + '...' %></td>
+        <td><%== product.des[0..255] + '...' %></td>
       </tr>
     <% end %>
   </table>
