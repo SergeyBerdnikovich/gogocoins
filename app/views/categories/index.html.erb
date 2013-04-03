@@ -3,6 +3,10 @@
 Welcome to our catalog! Our goal - to collect as much information as possible for all products possible. You may find here descriptions, reviews, photos and many more for any even rare products!<br>
 Our catalog is under construction right now, but please, feel free to walk around it while we working on it!<p>
 
+<% categories_breadcrumb(params[:parent_id]).each_with_index do |link, i| %>
+  <%= link %><%= ' ->' if i+1 < categories_breadcrumb(params[:parent_id]).size %>
+<% end %>
+
 <% if @categories.present? %>
   <table>
     <tr>
@@ -35,4 +39,4 @@ Our catalog is under construction right now, but please, feel free to walk aroun
 <% end %>
 <br />
 
-<%= link_to 'Back', categories_path(:parent_id => Category.find(params[:parent_id]).parent) %><br />
+<%= link_to 'Back', categories_path(:parent_id => Category.find(params[:parent_id]).parent) unless params[:parent_id].blank? || params[:parent_id] == '0' || params[:parent_id] == '1' %><br />
