@@ -1,4 +1,7 @@
-<h1>Listing categories</h1>
+<h1>GoGoCoins - spend money wisely!</h1>
+
+Welcome to our catalog! Our goal - to collect as much information as possible for all products possible. You may find here descriptions, reviews, photos and many more for any even rare products!<br>
+Our catalog is under construction right now, but please, feel free to walk around it while we working on it!<p>
 
 <% if @categories.present? %>
   <table>
@@ -24,7 +27,7 @@
     <% @products.each do |product| %>
       <tr>
         <td>--<%= link_to product.title, product %></td>
-        <td><%== product.des[0..255] + '...' %></td>
+        <td><%== strip_tags(product.des)[0..255] + '...' %></td>
         <td><%= product.price %></td>
       </tr>
     <% end %>

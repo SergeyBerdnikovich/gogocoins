@@ -1,21 +1,11 @@
 module ApplicationHelper
 
   def google_analytics
-    html = ""
-    html << "<script>"
-      html << "(function(i,s,o,g,r,a,m){
-                 i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                   (i[r].q=i[r].q||[]).push(arguments)},
-                 i[r].l=1*new Date();
-                 a=s.createElement(o),
-                 m=s.getElementsByTagName(o)[0];
-                 a.async=1;
-                 a.src=g;
-                 m.parentNode.insertBefore(a,m)
-               })(window,document,'script','//www.google-analytics.com/analytics.js','ga');"
+    html = '<p><a title="Real Time Web Analytics" href="http://clicky.com/100597226"><img alt="Real Time Web Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
+<script src="//static.getclicky.com/js" type="text/javascript"></script>
+<script type="text/javascript">try{ clicky.init(100597226); }catch(e){}</script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100597226ns.gif" /></p></noscript>
+'
 
-      html << "ga('create', 'UA-39792684-1', 'gogocoins.com');"
-      html << "ga('send', 'pageview');"
-    html << "</script>"
   end
 end
