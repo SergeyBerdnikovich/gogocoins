@@ -14,6 +14,9 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @product = Product.find(params[:id])
+    #@other_products = Product.order("RANDOM()").limit(6).where(:category_id => @product.category.id)
+    #@other_products = Product.offset(rand(Product.count)).limit(6).where(:category_id => @product.category.id)
+    @other_products = Product.where(:category_id => @product.category.id).sample(5)
 
     respond_to do |format|
       format.html # show.html.erb

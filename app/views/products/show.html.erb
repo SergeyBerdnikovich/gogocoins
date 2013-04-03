@@ -2,7 +2,7 @@
 
 <% product_breadcrumb(@product).each_with_index do |link, i| %>
   <%= link %><%= ' ->' if i+1 < product_breadcrumb(@product).size %>
-<% end %>
+<% end %><br />
 
 <p>
   <b>Title:</b>
@@ -18,5 +18,10 @@
   <b>Price:</b>
   <%= @product.price %>
 </p>
+
+Other products in <%= @product.category.name %> category:<br />
+<% @other_products.each do |product| %>
+  <%= link_to(product.title, product_path(product)) unless product == @product %>
+<% end %><br />
 
 <%= link_to 'Back', :back %>
